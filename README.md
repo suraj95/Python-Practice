@@ -2,4 +2,4 @@
 
 This repository contains practice problems for a Python Programming interview.
 
-![alt text](./Images/python_cheatsheet.png)
+![alt text](./Images/python_cheatsheet.jpeg)
