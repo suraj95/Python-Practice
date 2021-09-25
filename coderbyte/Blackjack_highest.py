@@ -29,14 +29,29 @@ Output: blackjack ace
 """
 def BlackjackHighest(cards):
 
+	ace_check= False
+
 	total = 0
+	#highest_card = None
 
 	for card in cards:
 
+		# check highest card
+		#if highest_card = None:
+		#	highest_card = card
+		#else:
+		#	if card > highest_card:
+		#		card
+
+
+
 		if card=="ace":
-			total +=1
+			total +=11 #ace becomes 1 only if count goes above 21
+			ace_check = True
+
 		elif card=="two":
 			total +=2
+
 		elif card=="three":
 			total +=3
 		elif card=="four":
@@ -60,22 +75,27 @@ def BlackjackHighest(cards):
 		elif card=="king":
 			total +=10
 
+
+	if total>21:
+
+		if ace_check:
+			total -= 10 #considering ace as 1
+
+		else:
+			return "above"
+
+	if total<21:
+		return "below"
+
 	if total==21:
 		return "blackjack"
 
-	elif total<21:
-		return "lower"
-
-	elif total>21:
-		return "higher"
-
 if __name__=="__main__":
 
+	print(BlackjackHighest(["two","three","ace","king"])) #below king
+	print(BlackjackHighest(["four","ten","king"])) #above king
 	print(BlackjackHighest(["four","ace","ten"])) #below ten
 	print(BlackjackHighest(["ace","queen"])) #blackjack ace
-
-
-
 
 
 
