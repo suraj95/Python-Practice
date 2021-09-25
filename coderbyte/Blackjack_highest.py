@@ -32,63 +32,82 @@ def BlackjackHighest(cards):
 	ace_check= False
 
 	total = 0
-	#highest_card = None
+	highest_card = None
+	card_dict = {} # for ordering purposes
 
 	for card in cards:
-
-		# check highest card
-		#if highest_card = None:
-		#	highest_card = card
-		#else:
-		#	if card > highest_card:
-		#		card
-
-
 
 		if card=="ace":
 			total +=11 #ace becomes 1 only if count goes above 21
 			ace_check = True
+			card_dict["ace"]= 11
 
 		elif card=="two":
 			total +=2
+			card_dict["two"]= 2
 
 		elif card=="three":
 			total +=3
+			card_dict["three"]= 3
+
 		elif card=="four":
 			total +=4
+			card_dict["four"]= 4
+
 		elif card=="five":
 			total +=5
+			card_dict["five"]= 5
+
 		elif card=="six":
 			total +=6
+			card_dict["six"]= 6
+
 		elif card=="seven":
 			total +=7
+			card_dict["seven"]= 7
+
 		elif card=="eight":
 			total +=8
+			card_dict["eight"]= 8
+
 		elif card=="nine":
 			total +=9
+			card_dict["nine"]= 9
+
 		elif card=="ten":
 			total +=10
+			card_dict["ten"]= 10
+
 		elif card=="jack":
 			total +=10
+			card_dict["jack"]= 10.1
+
 		elif card=="queen":
 			total +=10
+			card_dict["queen"]= 10.2
+
 		elif card=="king":
 			total +=10
+			card_dict["king"]= 10.3
 
 
 	if total>21:
 
 		if ace_check:
 			total -= 10 #considering ace as 1
+			card_dict["ace"]=1
 
 		else:
-			return "above"
+			highest_card = sorted(card_dict, key = card_dict.get)[-1]
+			return "above"+" "+highest_card
+
+	highest_card = sorted(card_dict, key = card_dict.get)[-1]
 
 	if total<21:
-		return "below"
+		return "below"+" "+highest_card
 
 	if total==21:
-		return "blackjack"
+		return "blackjack"+" "+highest_card
 
 if __name__=="__main__":
 
@@ -99,6 +118,24 @@ if __name__=="__main__":
 
 
 
+"""
+	# to help in visualizing ordering
 
+	help_dict = {
+    	'two': 2,
+    	'three': 3,
+    	'four': 4,
+    	'five': 5,
+    	'six': 6,
+    	'seven': 7,
+    	'eight': 8,
+    	'nine': 9,
+    	'ten': 10,
+    	'jack': 10.1,  #face cards order
+    	'queen': 10.2,
+    	'king': 10.3,
+    	'ace': 11,
+	}
+"""
 
 
